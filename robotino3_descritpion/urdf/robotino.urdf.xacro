@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<robot name="robotino" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	
+  <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+  <xacro:include filename="$(find robotino3_description)/urdf/robotino.gazebo" />
+
+  <!-- Include files -->
+  <xacro:include filename="$(find robotino3_description)/urdf/robotino_body.xacro"/>
+  <xacro:include filename="$(find robotino3_description)/urdf/robotino_hardware.xacro"/>
+    
+  <robotino_body />
+</robot>
