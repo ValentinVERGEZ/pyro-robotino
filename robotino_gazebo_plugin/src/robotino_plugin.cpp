@@ -14,7 +14,7 @@ namespace gazebo
 class WorldPluginTutorial : public ModelPlugin
 {
 public:
-  WorldPluginTutorial() : ModelPlugin(), vel(0.1)
+  WorldPluginTutorial() : ModelPlugin(), vel_x(0.1), vel_y(0.1), vel_z(0.1)
   {  	
     ROS_WARN("Starting robotino_plugin");
     cmd_vel_sub_ = nh_.subscribe("cmd_vel", 1, &WorldPluginTutorial::cmdVelCallback, this);
@@ -51,31 +51,48 @@ public:
     {
       // Apply a small linear velocity to the model.
       // this->model->SetLinearVel(math::Vector3(.03, 0, 0));
-    	if(this->model->GetJoint("wheel0_joint") != 0)
-    	{
-	    	this->model->GetJoint("wheel0_joint")->SetMaxForce(0,10);
-	    	this->model->GetJoint("wheel1_joint")->SetMaxForce(0,10);
-	    	this->model->GetJoint("wheel2_joint")->SetMaxForce(0,10);
-	    	this->model->GetJoint("wheel0_joint")->SetVelocity(0,vel*20);
-	    	this->model->GetJoint("wheel1_joint")->SetVelocity(0,vel*20);
-	    	this->model->GetJoint("wheel2_joint")->SetVelocity(0,vel*20);
-	    	// ROS_INFO_STREAM("Vel " << vel);    		
-    	}
-    	else
-    	{
-    		ROS_WARN_STREAM("Joint not found");
-    	}
+    	// if(this->model->GetJoint("wheel0_joint") != 0)
+    	// {
+	    // 	this->model->GetJoint("wheel0_joint")->SetMaxForce(0,10);
+	    // 	this->model->GetJoint("wheel1_joint")->SetMaxForce(0,10);
+	    // 	this->model->GetJoint("wheel2_joint")->SetMaxForce(0,10);
+	    // 	this->model->GetJoint("wheel0_joint")->SetVelocity(0,vel*20);
+	    // 	this->model->GetJoint("wheel1_joint")->SetVelocity(0,vel*20);
+	    // 	this->model->GetJoint("wheel2_joint")->SetVelocity(0,vel*20);
+	    // 	// ROS_INFO_STREAM("Vel " << vel);    		
+    	// }
+    	// else
+    	// {
+    	// 	ROS_WARN_STREAM("Joint not found");
+    	// }
+
+        if(this->model->GetJoint("joint") != 0)
+        {
+            vel_x *= 20;
+            this->model->GetJoint("joint")->SetForce(0,vel_x);
+            this->model->GetJoint("joint")->SetForce(1,vel_y);
+            this->model->GetJoint("joint")->SetForce(2,vel_z);
+            ROS_INFO_STREAM("Vel " << vel_x << " " << vel_y << " " << vel_z);          
+        }
+        else
+        {
+            ROS_WARN_STREAM("Joint not found");
+        }
 
     }
 
 private:
 	ros::NodeHandle nh_;
 	ros::Subscriber cmd_vel_sub_;
-	double vel;
+	double vel_x;
+    double vel_y;
+    double vel_z;
 
 	void cmdVelCallback(const geometry_msgs::TwistConstPtr& msg)
 	{
-		vel = msg->linear.x;
+		vel_x = msg->linear.x;
+        vel_y = msg->linear.y;
+        vel_z = msg->linear.z;
 		// double linear_x = msg->linear.x;
 		// double linear_y = msg->linear.y;
 		// double angular = msg->angular.z;
