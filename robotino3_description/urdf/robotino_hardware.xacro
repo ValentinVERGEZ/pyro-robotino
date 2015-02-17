@@ -110,7 +110,7 @@
   </macro>
   
   <!-- Camera -->
-  <macro name="camera" params="parent name *origin">
+  <macro name="camera_macro" params="parent name *origin">
     <joint name="${name}_joint" type="fixed">
       <insert_block name="origin" />
       <parent link="${parent}"/>
@@ -156,6 +156,13 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://robotino3_description/meshes/AngleBracketUSBHub.dae" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+        </geometry>
+      </visual>
+      
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${HOKUYO_RADIUS}" length="${HOKUYO_LENGTH}" />
         </geometry>
       </visual>
     </link>
