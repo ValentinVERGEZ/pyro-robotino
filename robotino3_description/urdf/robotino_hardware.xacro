@@ -67,12 +67,12 @@
           izz="1.0" />
       </inertial>
 
-<!--       <collision>
+      <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="0.25 0.11 0.16"/>
         </geometry>
-      </collision> -->
+      </collision>
     </link>
   </macro>
   
@@ -93,19 +93,19 @@
           izz="1.0" />
       </inertial>
 
-<!--       <visual>
+      <visual>
         <origin xyz="0 0 0" rpy="0 0 ${M_PI/2}" />
         <geometry>
           <mesh filename="package://robotino3_description/meshes/RobotinoLaserScanner.dae" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
         </geometry>
-      </visual> -->
+      </visual>
 
-<!--       <collision>
+      <collision>
         <origin xyz="0 0 ${HOKUYO_LENGTH/2}" rpy="0 0 0" />
         <geometry>
           <cylinder radius="${HOKUYO_RADIUS}" length="${HOKUYO_LENGTH}" />
         </geometry>
-      </collision> -->
+      </collision>
     </link>
   </macro>
   
@@ -126,12 +126,12 @@
           izz="1.0" />
       </inertial>
 
-<!--       <visual>
+      <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://robotino3_description/meshes/RobotinoCamera.dae" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
         </geometry>
-      </visual> -->
+      </visual>
     </link>
   </macro>
   
@@ -152,12 +152,12 @@
           izz="1.0" />
       </inertial>
 
-<!--       <visual>
+      <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://robotino3_description/meshes/AngleBracketUSBHub.dae" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
         </geometry>
-      </visual> -->
+      </visual>
     </link>
   </macro>
   
@@ -180,13 +180,13 @@
           izz="1.0" />
       </inertial>
 
-<!--       <visual>
+      <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="${KINECT_LENGTH} ${KINECT_WIDTH} ${KINECT_HEIGHT}"/>
         </geometry>
         <material name="${color}"/>
-      </visual> -->
+      </visual>
 
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />

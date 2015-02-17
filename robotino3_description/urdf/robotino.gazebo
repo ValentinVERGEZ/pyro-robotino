@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <robot>
 
+
+  <property name="name" value="robotino"/>
+  <property name="update_rate" value="10"/>
+  
+
   <!-- ros_control plugin -->
 <!--   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
@@ -147,6 +152,20 @@
     <mu2>0</mu2>
     <dampingFactor>0.7</dampingFactor>
   </gazebo> -->
+
+  <gazebo reference="base_link">
+    <sensor name="base_link_contact_sensor" type="contact">
+      <always_on>true</always_on>
+      <update_rate>30.0</update_rate>
+      <contact>
+        <collision>collision</collision>
+      </contact>
+      <plugin name="base_link_bumper" filename="libgazebo_ros_bumper.so">
+        <bumperTopicName>base_link_contact_sensor_state</bumperTopicName>
+        <frameName>gripper</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
 
 
   <gazebo>    
